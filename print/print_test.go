@@ -17,6 +17,7 @@ import (
 func TestPrint(t *testing.T) {
 	p := print.New()
 	fmt.Printf("%s", p.ClearScreen())
+	fmt.Printf("\t%s\n", p.PrintHeader(print.Blue, print.Purple, "hello world", 20, false))
 	p.PrintRed("\tHello World\n")
 	fmt.Printf("\t%s\n", p.PrintDangerZone())
 	fmt.Printf("\t%s\n", p.PrintColorMessage(print.Cyan, "Hello World"))

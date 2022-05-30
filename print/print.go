@@ -19,37 +19,35 @@ type (
 	}
 )
 
-const (
+var (
 	off    = "\x1b[0m"    // Text Reset
-	black  = "\x1b[1;30m" // Black
-	red    = "\x1b[1;31m" // Red
-	green  = "\x1b[1;32m" // Green
-	yellow = "\x1b[1;33m" // Yellow
-	blue   = "\x1b[1;34m" // Blue
-	purple = "\x1b[1;35m" // Purple
-	cyan   = "\x1b[1;36m" // Cyan
+	Black  = "\x1b[1;30m" // Black
+	Red    = "\x1b[1;31m" // Red
+	Green  = "\x1b[1;32m" // Green
+	Yellow = "\x1b[1;33m" // Yellow
+	Blue   = "\x1b[1;34m" // Blue
+	Purple = "\x1b[1;35m" // Purple
+	Cyan   = "\x1b[1;36m" // Cyan
 	White  = "\x1b[1;37m" // White
 
-	redBase    = "\x1b[0;31m" // Red no highlighted
-	greenbase  = "\x1b[0;32m" // Green no highlighted
-	yellowBase = "\x1b[0;33m" // Yellow no highlighted
-	blueBase   = "\x1b[0;34m" // Blue no highlighted
-	purpleBase = "\x1b[0;35m" // Purple no highlighted
-	cyanBase   = "\x1b[0;36m" // Cyan no highlighted
+	RedBase    = "\x1b[0;31m" // Red no highlighted
+	Greenbase  = "\x1b[0;32m" // Green no highlighted
+	YellowBase = "\x1b[0;33m" // Yellow no highlighted
+	BlueBase   = "\x1b[0;34m" // Blue no highlighted
+	PurpleBase = "\x1b[0;35m" // Purple no highlighted
+	CyanBase   = "\x1b[0;36m" // Cyan no highlighted
 	WhiteBase  = "\x1b[0;37m" // White no highlighted
 
-	redUnderline = "\x1b[4;31m" // Red underline
+	RedUnderline = "\x1b[4;31m" // Red underline
 	OneLineUP    = "\x1b[A"
 
 	ClearLine   = "\x1b[0G\x1b[2K\x1b[0m\r"
 	ClearScreen = "\x1b[H\x1b[2J"
 	HEADER      = "---------------"
 	LINE        = "_________________________________________________"
-)
 
-var (
 	dangerZone = fmt.Sprintf("%sDanger Zone%s, be sure you understand the implication!",
-		redUnderline, off)
+		RedUnderline, off)
 )
 
 func New() *Print {
@@ -58,51 +56,51 @@ func New() *Print {
 
 // functions to print messsage in the given color
 func (p *Print) PrintRed(message string) {
-	fmt.Printf("%s%s%s", red, message, off)
+	fmt.Printf("%s%s%s", Red, message, off)
 }
 
 func (p *Print) PrintGreen(message string) {
-	fmt.Printf("%s%s%s", green, message, off)
+	fmt.Printf("%s%s%s", Green, message, off)
 }
 
 func (p *Print) PrintYellow(message string) {
-	fmt.Printf("%s%s%s", yellow, message, off)
+	fmt.Printf("%s%s%s", Yellow, message, off)
 }
 
 func (p *Print) PrintBlue(message string) {
-	fmt.Printf("%s%s%s", blue, message, off)
+	fmt.Printf("%s%s%s", Blue, message, off)
 }
 
 func (p *Print) PrintPurple(message string) {
-	fmt.Printf("%s%s%s", purple, message, off)
+	fmt.Printf("%s%s%s", Purple, message, off)
 }
 
 func (p *Print) PrintCyan(message string) {
-	fmt.Printf("%s%s%s", cyan, message, off)
+	fmt.Printf("%s%s%s", Cyan, message, off)
 }
 
 func (p *Print) MessageRed(message string) string {
-	return fmt.Sprintf("%s%s%s", red, message, off)
+	return fmt.Sprintf("%s%s%s", Red, message, off)
 }
 
 func (p *Print) MessageGreen(message string) string {
-	return fmt.Sprintf("%s%s%s", green, message, off)
+	return fmt.Sprintf("%s%s%s", Green, message, off)
 }
 
 func (p *Print) MessageYellow(message string) string {
-	return fmt.Sprintf("%s%s%s", yellow, message, off)
+	return fmt.Sprintf("%s%s%s", Yellow, message, off)
 }
 
 func (p *Print) MessageBlue(message string) string {
-	return fmt.Sprintf("%s%s%s", blue, message, off)
+	return fmt.Sprintf("%s%s%s", Blue, message, off)
 }
 
 func (p *Print) MessagePurple(message string) string {
-	return fmt.Sprintf("%s%s%s", purple, message, off)
+	return fmt.Sprintf("%s%s%s", Purple, message, off)
 }
 
 func (p *Print) MessageCyan(message string) string {
-	return fmt.Sprintf("%s%s%s", cyan, message, off)
+	return fmt.Sprintf("%s%s%s", Cyan, message, off)
 }
 
 // function Message line
@@ -131,6 +129,15 @@ func (p *Print) PrintDangerZone() string {
 
 func (p *Print) PrintColorMessage(messageColor, message string) string {
 	return fmt.Sprintf("%s%s%s", messageColor, message, off)
+}
+
+func (p *Print) PrintHeader(edgeColor, messageColor, message string, edgeCount int, clearScreen bool) string {
+	if clearScreen {
+		p.ClearScreen()
+	}
+	edges := p.PrintLine(edgeColor, edgeCount)
+	msg := p.PrintColorMessage(messageColor, message)
+	return fmt.Sprintf("%s %s %s", edges, msg, edges)
 }
 
 // The End Message
