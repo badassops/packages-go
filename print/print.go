@@ -20,25 +20,25 @@ type (
 )
 
 const (
-	Off    = "\x1b[0m"    // Text Reset
-	Black  = "\x1b[1;30m" // Black
-	Red    = "\x1b[1;31m" // Red
-	Green  = "\x1b[1;32m" // Green
-	Yellow = "\x1b[1;33m" // Yellow
-	Blue   = "\x1b[1;34m" // Blue
-	Purple = "\x1b[1;35m" // Purple
-	Cyan   = "\x1b[1;36m" // Cyan
+	off    = "\x1b[0m"    // Text Reset
+	black  = "\x1b[1;30m" // Black
+	red    = "\x1b[1;31m" // Red
+	green  = "\x1b[1;32m" // Green
+	yellow = "\x1b[1;33m" // Yellow
+	blue   = "\x1b[1;34m" // Blue
+	purple = "\x1b[1;35m" // Purple
+	cyan   = "\x1b[1;36m" // Cyan
 	White  = "\x1b[1;37m" // White
 
-	RedBase    = "\x1b[0;31m" // Red no highlighted
-	Greenbase  = "\x1b[0;32m" // Green no highlighted
-	YellowBase = "\x1b[0;33m" // Yellow no highlighted
-	BlueBase   = "\x1b[0;34m" // Blue no highlighted
-	PurpleBase = "\x1b[0;35m" // Purple no highlighted
-	CyanBase   = "\x1b[0;36m" // Cyan no highlighted
+	redBase    = "\x1b[0;31m" // Red no highlighted
+	greenbase  = "\x1b[0;32m" // Green no highlighted
+	yellowBase = "\x1b[0;33m" // Yellow no highlighted
+	blueBase   = "\x1b[0;34m" // Blue no highlighted
+	purpleBase = "\x1b[0;35m" // Purple no highlighted
+	cyanBase   = "\x1b[0;36m" // Cyan no highlighted
 	WhiteBase  = "\x1b[0;37m" // White no highlighted
 
-	RedUnderline = "\x1b[4;31m" // Red underline
+	redUnderline = "\x1b[4;31m" // Red underline
 	OneLineUP    = "\x1b[A"
 
 	ClearLine   = "\x1b[0G\x1b[2K\x1b[0m\r"
@@ -49,7 +49,7 @@ const (
 
 var (
 	dangerZone = fmt.Sprintf("%sDanger Zone%s, be sure you understand the implication!",
-		RedUnderline, Off)
+		redUnderline, off)
 )
 
 func New() *Print {
@@ -58,57 +58,57 @@ func New() *Print {
 
 // functions to print messsage in the given color
 func (p *Print) PrintRed(message string) {
-	fmt.Printf("%s%s%s", Red, message, Off)
+	fmt.Printf("%s%s%s", red, message, off)
 }
 
 func (p *Print) PrintGreen(message string) {
-	fmt.Printf("%s%s%s", Green, message, Off)
+	fmt.Printf("%s%s%s", green, message, off)
 }
 
 func (p *Print) PrintYellow(message string) {
-	fmt.Printf("%s%s%s", Yellow, message, Off)
+	fmt.Printf("%s%s%s", yellow, message, off)
 }
 
 func (p *Print) PrintBlue(message string) {
-	fmt.Printf("%s%s%s", Blue, message, Off)
+	fmt.Printf("%s%s%s", blue, message, off)
 }
 
 func (p *Print) PrintPurple(message string) {
-	fmt.Printf("%s%s%s", Purple, message, Off)
+	fmt.Printf("%s%s%s", purple, message, off)
 }
 
 func (p *Print) PrintCyan(message string) {
-	fmt.Printf("%s%s%s", Cyan, message, Off)
+	fmt.Printf("%s%s%s", cyan, message, off)
 }
 
 func (p *Print) MessageRed(message string) string {
-	return fmt.Sprintf("%s%s%s", Red, message, Off)
+	return fmt.Sprintf("%s%s%s", red, message, off)
 }
 
 func (p *Print) MessageGreen(message string) string {
-	return fmt.Sprintf("%s%s%s", Green, message, Off)
+	return fmt.Sprintf("%s%s%s", green, message, off)
 }
 
 func (p *Print) MessageYellow(message string) string {
-	return fmt.Sprintf("%s%s%s", Yellow, message, Off)
+	return fmt.Sprintf("%s%s%s", yellow, message, off)
 }
 
 func (p *Print) MessageBlue(message string) string {
-	return fmt.Sprintf("%s%s%s", Blue, message, Off)
+	return fmt.Sprintf("%s%s%s", blue, message, off)
 }
 
 func (p *Print) MessagePurple(message string) string {
-	return fmt.Sprintf("%s%s%s", Purple, message, Off)
+	return fmt.Sprintf("%s%s%s", purple, message, off)
 }
 
 func (p *Print) MessageCyan(message string) string {
-	return fmt.Sprintf("%s%s%s", Cyan, message, Off)
+	return fmt.Sprintf("%s%s%s", cyan, message, off)
 }
 
 // function Message line
 func (p *Print) PrintLine(lineColor string, count int) string {
 	line := strings.Repeat("⎻", count)
-	return fmt.Sprintf("%s%s%s", lineColor, line, Off)
+	return fmt.Sprintf("%s%s%s", lineColor, line, off)
 }
 
 // function to clear the screen
@@ -130,11 +130,11 @@ func (p *Print) PrintDangerZone() string {
 }
 
 func (p *Print) PrintColorMessage(messageColor, message string) string {
-	return fmt.Sprintf("%s%s%s", messageColor, message, Off)
+	return fmt.Sprintf("%s%s%s", messageColor, message, off)
 }
 
 // The End Message
 func (p *Print) TheEnd() {
-	p.PrintGreen("\tEnjoy a cuppa of hot cOffee ☕️ / 🥃 \n")
+	p.PrintGreen("\tEnjoy a cuppa of hot coffee ☕️ / 🥃 \n")
 	p.PrintGreen("\tThe End\n")
 }
